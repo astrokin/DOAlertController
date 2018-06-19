@@ -172,7 +172,7 @@ class ViewController : UITableViewController, UITextFieldDelegate {
         }
         
         // Stop listening for text change notifications on the text field. This closure will be called in the two action handlers.
-        let removeTextFieldObserver: (Void) -> Void = {
+        let removeTextFieldObserver: () -> Void = {
             NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UITextFieldTextDidChange, object: alertController.textFields!.first)
         }
         
@@ -391,11 +391,11 @@ class ViewController : UITableViewController, UITextFieldDelegate {
     
     // MARK: UITextFieldTextDidChangeNotification
     
-    func handleTextFieldTextDidChangeNotification(_ notification: Notification) {
+    @objc func handleTextFieldTextDidChangeNotification(_ notification: Notification) {
         let textField = notification.object as! UITextField
         
         // Enforce a minimum length of >= 5 characters for secure text alerts.
-        secureTextAlertAction!.enabled = textField.text!.characters.count >= 5
+        secureTextAlertAction!.enabled = textField.text!.count >= 5
     }
     
     // MARK: UITextFieldDelegate Methods

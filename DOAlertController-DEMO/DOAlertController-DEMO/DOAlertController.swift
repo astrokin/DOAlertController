@@ -627,7 +627,7 @@ open class DOAlertController : UIViewController, UITextFieldDelegate, UIViewCont
     }
     
     // Button Tapped Action
-    func buttonTapped(_ sender: UIButton) {
+    @objc func buttonTapped(_ sender: UIButton) {
         sender.isSelected = true
         let action = actions[sender.tag - 1] as! DOAlertAction
         if (action.handler != nil) {
@@ -637,7 +637,7 @@ open class DOAlertController : UIViewController, UITextFieldDelegate, UIViewCont
     }
     
     // Handle ContainerView tap gesture
-    func handleContainerViewTapGesture(_ sender: AnyObject) {
+    @objc func handleContainerViewTapGesture(_ sender: AnyObject) {
         // cancel action
         let action = actions[cancelButtonTag - 1] as! DOAlertAction
         if (action.handler != nil) {
@@ -664,7 +664,7 @@ open class DOAlertController : UIViewController, UITextFieldDelegate, UIViewCont
         actions.enumerated().forEach({ buttons[$0.offset].isEnabled = $0.element.isEnabled ?? true })
     }
     
-    func handleKeyboardWillShowNotification(_ notification: Notification) {
+    @objc func handleKeyboardWillShowNotification(_ notification: Notification) {
         if let userInfo = notification.userInfo as? [String: NSValue],
             let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey]?.cgRectValue.size {
             var _keyboardSize = keyboardSize
@@ -682,7 +682,7 @@ open class DOAlertController : UIViewController, UITextFieldDelegate, UIViewCont
         }
     }
     
-    func handleKeyboardWillHideNotification(_ notification: Notification) {
+    @objc func handleKeyboardWillHideNotification(_ notification: Notification) {
         keyboardHeight = 0.0
         reloadAlertViewHeight()
         containerViewBottomSpaceConstraint?.constant = keyboardHeight
