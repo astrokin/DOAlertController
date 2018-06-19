@@ -661,9 +661,7 @@ open class DOAlertController : UIViewController, UITextFieldDelegate, UIViewCont
     // MARK : Handle NSNotification Method
     
     @objc func handleAlertActionEnabledDidChangeNotification(_ notification: Notification) {
-        for i in 0..<buttons.count {
-            buttons[i].isEnabled = actions[i].enabled
-        }
+        actions.enumerated().forEach({ buttons[$0.offset].isEnabled = $0.element.isEnabled ?? true })
     }
     
     func handleKeyboardWillShowNotification(_ notification: Notification) {
