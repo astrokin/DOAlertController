@@ -13,7 +13,7 @@
 		4F47CAB81AE26BD100BF71E4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F47CAB71AE26BD100BF71E4 /* Images.xcassets */; };
 		4F47CABB1AE26BD100BF71E4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F47CAB91AE26BD100BF71E4 /* LaunchScreen.xib */; };
 		4F47CAC71AE26BD100BF71E4 /* DOAlertController_DEMOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F47CAC61AE26BD100BF71E4 /* DOAlertController_DEMOTests.swift */; };
-		4F47CAD11AE26C9300BF71E4 /* DOAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F47CAD01AE26C9300BF71E4 /* DOAlertController.swift */; };
+		E894D48F20D93D9500A4D4BC /* DOAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E894D48E20D93D9500A4D4BC /* DOAlertController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +37,7 @@
 		4F47CAC01AE26BD100BF71E4 /* DOAlertController-DEMOTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DOAlertController-DEMOTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F47CAC51AE26BD100BF71E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F47CAC61AE26BD100BF71E4 /* DOAlertController_DEMOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DOAlertController_DEMOTests.swift; sourceTree = "<group>"; };
-		4F47CAD01AE26C9300BF71E4 /* DOAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DOAlertController.swift; sourceTree = "<group>"; };
+		E894D48E20D93D9500A4D4BC /* DOAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DOAlertController.swift; path = ../DOAlertController/DOAlertController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +61,7 @@
 		4F47CAA21AE26BD100BF71E4 = {
 			isa = PBXGroup;
 			children = (
+				E894D48E20D93D9500A4D4BC /* DOAlertController.swift */,
 				4F47CAAD1AE26BD100BF71E4 /* DOAlertController-DEMO */,
 				4F47CAC31AE26BD100BF71E4 /* DOAlertController-DEMOTests */,
 				4F47CAAC1AE26BD100BF71E4 /* Products */,
@@ -84,7 +85,6 @@
 				4F47CAB41AE26BD100BF71E4 /* Main.storyboard */,
 				4F47CAB71AE26BD100BF71E4 /* Images.xcassets */,
 				4F47CAB91AE26BD100BF71E4 /* LaunchScreen.xib */,
-				4F47CAD21AE26C9F00BF71E4 /* DOAlertController */,
 				4F47CAAE1AE26BD100BF71E4 /* Supporting Files */,
 			);
 			path = "DOAlertController-DEMO";
@@ -113,14 +113,6 @@
 				4F47CAC51AE26BD100BF71E4 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		4F47CAD21AE26C9F00BF71E4 /* DOAlertController */ = {
-			isa = PBXGroup;
-			children = (
-				4F47CAD01AE26C9300BF71E4 /* DOAlertController.swift */,
-			);
-			name = DOAlertController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,7 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F47CAB31AE26BD100BF71E4 /* ViewController.swift in Sources */,
-				4F47CAD11AE26C9300BF71E4 /* DOAlertController.swift in Sources */,
+				E894D48F20D93D9500A4D4BC /* DOAlertController.swift in Sources */,
 				4F47CAB11AE26BD100BF71E4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
