@@ -312,14 +312,7 @@ open class DOAlertController : UIViewController, UITextFieldDelegate, UIViewCont
         // variable for ActionSheet
         if (!isAlert()) {
             alertViewWidth =  screenSize.width
-            let padding: CGFloat
-            switch UIDevice.current.kind {
-            case .iPad, .iPhone_5_5S_5C, .iPhone_6_6S_7_8, .iPhone_6_6S_7_8_PLUS, .iPhone_unknown:
-                padding = 8.0
-            case .iPhone_X_Xs, .iPhone_Xr, .iPhone_Xs_Max:
-                padding = 24.0
-            }
-            alertViewPadding = padding
+            alertViewPadding = 8.0
             innerContentWidth = (screenSize.height > screenSize.width) ? screenSize.width - alertViewPadding * 2 : screenSize.height - alertViewPadding * 2
             buttonMargin = 8.0
             buttonCornerRadius = 6.0
@@ -409,7 +402,7 @@ open class DOAlertController : UIViewController, UITextFieldDelegate, UIViewCont
         let textAreaScrollViewBottomSpaceConstraint = NSLayoutConstraint(item: textAreaScrollView, attribute: .bottom, relatedBy: .equal, toItem: buttonAreaScrollView, attribute: .top, multiplier: 1.0, constant: 0.0)
         let buttonAreaScrollViewRightSpaceConstraint = NSLayoutConstraint(item: buttonAreaScrollView, attribute: .right, relatedBy: .equal, toItem: alertView, attribute: .right, multiplier: 1.0, constant: 0.0)
         let buttonAreaScrollViewLeftSpaceConstraint = NSLayoutConstraint(item: buttonAreaScrollView, attribute: .left, relatedBy: .equal, toItem: alertView, attribute: .left, multiplier: 1.0, constant: 0.0)
-        let buttonAreaScrollViewBottomSpaceConstraint = NSLayoutConstraint(item: buttonAreaScrollView, attribute: .bottom, relatedBy: .equal, toItem: alertView, attribute: .bottom, multiplier: 1.0, constant: isAlert() ? 0.0 : -actionSheetBounceHeight)
+        let buttonAreaScrollViewBottomSpaceConstraint = NSLayoutConstraint(item: buttonAreaScrollView, attribute: .bottom, relatedBy: .equal, toItem: alertView, attribute: .bottom, multiplier: 1.0, constant: isAlert() ? 0.0 : -UIDevice.bottomPadding)
         alertView.addConstraints([textAreaScrollViewTopSpaceConstraint, textAreaScrollViewRightSpaceConstraint, textAreaScrollViewLeftSpaceConstraint, textAreaScrollViewBottomSpaceConstraint, buttonAreaScrollViewRightSpaceConstraint, buttonAreaScrollViewLeftSpaceConstraint, buttonAreaScrollViewBottomSpaceConstraint])
         
         // TextAreaScrollView
@@ -525,7 +518,7 @@ open class DOAlertController : UIViewController, UITextFieldDelegate, UIViewCont
         }
         
         // TextAreaScrollView
-        textAreaHeight = textAreaPositionY
+        textAreaHeight = textAreaPositionY + UIDevice.topPadding
         textAreaScrollView.contentSize = CGSize(width: alertViewWidth, height: textAreaHeight)
         textContainerHeightConstraint?.constant = textAreaHeight
         
@@ -790,6 +783,24 @@ fileprivate extension UIDevice {
         case iPhone_X_Xs
         case iPhone_Xs_Max
         case iPhone_Xr
+    }
+    
+    fileprivate class var topPadding: CGFloat {
+        switch UIDevice.current.kind {
+        case .iPad, .iPhone_5_5S_5C, .iPhone_6_6S_7_8, .iPhone_6_6S_7_8_PLUS, .iPhone_unknown:
+            return 5.0
+        case .iPhone_X_Xs, .iPhone_Xr, .iPhone_Xs_Max:
+            return 10.0
+        }
+    }
+    
+    fileprivate class var bottomPadding: CGFloat {
+        switch UIDevice.current.kind {
+        case .iPad, .iPhone_5_5S_5C, .iPhone_6_6S_7_8, .iPhone_6_6S_7_8_PLUS, .iPhone_unknown:
+            return 20.0
+        case .iPhone_X_Xs, .iPhone_Xr, .iPhone_Xs_Max:
+            return 35.0
+        }
     }
     
     fileprivate var kind: Kind {
