@@ -120,16 +120,16 @@ open class DOAlertAnimation : NSObject, UIViewControllerAnimatedTransitioning {
     
     func dismissAnimateTransition(_ transitionContext: UIViewControllerContextTransitioning) {
         
-        let alertController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from) as! DOAlertController
+        let alertController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from) as? DOAlertController
         
         UIView.animate(withDuration: self.transitionDuration(using: transitionContext),
-                                   animations: {
-                                    alertController.overlayView.alpha = 0.0
-                                    if (alertController.isAlert()) {
-                                        alertController.alertView.alpha = 0.0
-                                        alertController.alertView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+                                   animations: { [weak alertController] in
+                                    alertController?.overlayView.alpha = 0.0
+                                    if (alertController?.isAlert() == true) {
+                                        alertController?.alertView.alpha = 0.0
+                                        alertController?.alertView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
                                     } else {
-                                        alertController.containerView.transform = CGAffineTransform(translationX: 0, y: alertController.alertView.frame.height)
+                                        alertController?.containerView.transform = CGAffineTransform(translationX: 0, y: alertController?.alertView.frame.height ?? 0)
                                     }
         },
                                    completion: { finished in
