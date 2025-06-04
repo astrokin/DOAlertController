@@ -143,7 +143,7 @@ open class DOAlertAnimation : NSObject, UIViewControllerAnimatedTransitioning {
 open class DOAlertController : UIViewController, UITextFieldDelegate, UIViewControllerTransitioningDelegate {
     
     // Message
-    open var message: String?
+    open var message: NSAttributedString?
     
     // AlertController Style
     fileprivate(set) var preferredStyle: DOAlertControllerStyle?
@@ -241,12 +241,17 @@ open class DOAlertController : UIViewController, UITextFieldDelegate, UIViewCont
     fileprivate var keyboardHeight: CGFloat = 0.0
     fileprivate var cancelButtonTag = 0
     
-    // Initializer
     public convenience init(title: String?, message: String?, preferredStyle: DOAlertControllerStyle) {
+        let attributedMessage: NSAttributedString? = message != nil ? NSAttributedString(string: message!) : nil
+        self.init(title: title, attrMessage: attributedMessage, preferredStyle: preferredStyle)
+    }
+    
+    // Initializer
+    public convenience init(title: String?, attrMessage: NSAttributedString?, preferredStyle: DOAlertControllerStyle) {
         self.init(nibName: nil, bundle: nil)
         
         self.title = title
-        self.message = message
+        self.message = attrMessage
         self.preferredStyle = preferredStyle
         
         self.providesPresentationContextTransitionStyle = true
@@ -454,7 +459,7 @@ open class DOAlertController : UIViewController, UITextFieldDelegate, UIViewCont
         // TextArea Layout
         //------------------------------
         let hasTitle: Bool = title != nil && title != ""
-        let hasMessage: Bool = message != nil && message != ""
+        let hasMessage: Bool = message == nil ? false : message!.string != ""
         let hasTextField: Bool = textFields != nil && textFields!.count > 0
         
         var textAreaPositionY: CGFloat = alertViewPadding
@@ -481,7 +486,7 @@ open class DOAlertController : UIViewController, UITextFieldDelegate, UIViewCont
             messageView.textAlignment = .center
             messageView.font = messageFont
             messageView.textColor = messageTextColor
-            messageView.text = message
+            messageView.attributedText = message
             messageView.sizeToFit()
             messageView.frame = CGRect(x: 0, y: textAreaPositionY, width: innerContentWidth, height: messageView.frame.height)
             textContainer.addSubview(messageView)

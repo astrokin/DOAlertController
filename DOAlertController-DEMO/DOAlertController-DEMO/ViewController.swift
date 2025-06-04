@@ -44,10 +44,10 @@ class ViewController : UITableViewController, UITextFieldDelegate {
     /// Show an alert with an "Okay" button.
     func showSimpleAlert(_: IndexPath) {
         let title = "Simple Alert"
-        let message = "A message should be a short, complete sentence."
+        let message = NSAttributedString(string: "A message should be a short, complete sentence.", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 12)])
         let cancelButtonTitle = "OK"
         
-        let alertController = DOAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertController = DOAlertController(title: title, attrMessage: message, preferredStyle: .alert)
         
         // Create the action.
         let cancelAction = DOAlertAction(title: cancelButtonTitle, style: .cancel) { action in
@@ -63,11 +63,15 @@ class ViewController : UITableViewController, UITextFieldDelegate {
     /// Show an alert with an "Okay" and "Cancel" button.
     func showOkayCancelAlert(_: IndexPath) {
         let title = "Okay/Cancel Alert"
-        let message = "A message should be a short, complete sentence."
+        let message = NSAttributedString(string: "A message should be a short, complete sentence.",
+                                         attributes: [
+                                            NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 12),
+                                            NSAttributedString.Key.foregroundColor : UIColor.red
+                                         ])
         let cancelButtonTitle = "Cancel"
         let otherButtonTitle = "OK"
         
-        let alertCotroller = DOAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertCotroller = DOAlertController(title: title, attrMessage: message, preferredStyle: .alert)
         
         // Create the actions.
         let cancelAction = DOAlertAction(title: cancelButtonTitle, style: .cancel) { action in
